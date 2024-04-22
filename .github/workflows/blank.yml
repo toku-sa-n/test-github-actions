@@ -28,7 +28,7 @@ jobs:
           dune-cache: true
 
       - name: Install Coq
-        run: opam install --yes coq.8.19.0
+        run: eval $(opam env) && opam install --yes coq.8.19.0
 
       - name: Run Coq
         run: coqc --version
