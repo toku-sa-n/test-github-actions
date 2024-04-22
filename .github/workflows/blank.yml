@@ -1,28 +1,57 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  test:
+    runs-on: "windows-latest"
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
 
-      - run: pwd
-      - run: mkdir foo
-      - run: cd foo
-      - run: pwd
+      # - name: Install dependencies
+      #   id: haskell-setup
+      #   uses: haskell-actions/setup@ca7ecf7b0c7a4300227b1ab05cda52bf019c174b # v2.0.0
+      #   with:
+      #     enable-stack: true
+
+      # - name: Install dependencies (Windows)
+      #   # See https://github.com/haskell-game/sdl2/issues/277#issuecomment-1784282404 for why we download older SDL2.
+      #   # See https://github.com/msys2/MINGW-packages/issues/11731 for the update commands.
+      #   # Install `msys2-keyring` first to avoid the untrusted error.
+      #   run: |
+      #     stack exec -- pacman -Syyu --noconfirm
+      #     stack exec -- pacman -S --noconfirm `
+      #     msys2-keyring `
+      #     mingw-w64-x86_64-gmp `
+      #     mingw-w64-x86_64-pkg-config `
+      #     mingw-w64-x86_64-freeglut `
+      #     mingw-w64-x86_64-glew `
+      #     mingw-w64-x86_64-freetype
+      #     stack exec -- curl -O  https://repo.msys2.org/mingw/x86_64/mingw-w64-x86_64-SDL2-2.24.1-1-any.pkg.tar.zst
+      #     stack exec -- pacman -U mingw-w64-x86_64-SDL2-2.24.1-1-any.pkg.tar.zst --noconfirm
+      #   if: runner.os == 'Windows'
+
+      # See https://github.com/ocaml-opam/opam-repository-mingw#updates for `opam-repositories`.
+      - name: Install OCaml
+        uses: ocaml/setup-ocaml@2771e408a16f7fedf3b342f0676646dc463bd606 # v2.2.7
+        with:
+          ocaml-compiler: "4.14.1"
+          opam-repositories: |
+            opam-repository-mingw: https://github.com/ocaml-opam/opam-repository-mingw.git#sunset
+            default: https://github.com/ocaml/opam-repository.git
+          dune-cache: true
+
+      - name: Install Coq
+        run: opam install --yes coq.8.19.0
+
+      - name: Run Coq
+        run: coqc --version
