@@ -27,8 +27,11 @@ jobs:
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
 
-      - name: Install Coq
-        run: eval $(opam env) && opam install --yes coq.8.19.0
+      - name: Try Coqfmt
+        run: git clone https://github.com/toku-sa-n/coqfm.git
 
-      - name: Run Coq
-        run: coqc --version
+      - name: Install Coqfmt
+        run: |
+          cd coqfm
+          opam install . --deps-only
+          opam install .
