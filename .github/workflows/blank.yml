@@ -42,7 +42,7 @@ jobs:
 
       # See https://github.com/ocaml-opam/opam-repository-mingw#updates for `opam-repositories`.
       - name: Install OCaml
-        uses: ocaml/setup-ocaml@v2.2.8
+        uses: ocaml/setup-ocaml@42bf33a4dd3ba5d75a4c9ea6b27d960c9eb4a018 # v2.2.8
         with:
           ocaml-compiler: "4.14.1"
           opam-repositories: |
