@@ -17,29 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
 
-      # - name: Install dependencies
-      #   id: haskell-setup
-      #   uses: haskell-actions/setup@ca7ecf7b0c7a4300227b1ab05cda52bf019c174b # v2.0.0
-      #   with:
-      #     enable-stack: true
-
-      # - name: Install dependencies (Windows)
-      #   # See https://github.com/haskell-game/sdl2/issues/277#issuecomment-1784282404 for why we download older SDL2.
-      #   # See https://github.com/msys2/MINGW-packages/issues/11731 for the update commands.
-      #   # Install `msys2-keyring` first to avoid the untrusted error.
-      #   run: |
-      #     stack exec -- pacman -Syyu --noconfirm
-      #     stack exec -- pacman -S --noconfirm `
-      #     msys2-keyring `
-      #     mingw-w64-x86_64-gmp `
-      #     mingw-w64-x86_64-pkg-config `
-      #     mingw-w64-x86_64-freeglut `
-      #     mingw-w64-x86_64-glew `
-      #     mingw-w64-x86_64-freetype
-      #     stack exec -- curl -O  https://repo.msys2.org/mingw/x86_64/mingw-w64-x86_64-SDL2-2.24.1-1-any.pkg.tar.zst
-      #     stack exec -- pacman -U mingw-w64-x86_64-SDL2-2.24.1-1-any.pkg.tar.zst --noconfirm
-      #   if: runner.os == 'Windows'
-
       # See https://github.com/ocaml-opam/opam-repository-mingw#updates for `opam-repositories`.
       - name: Install OCaml
         uses: ocaml/setup-ocaml@42bf33a4dd3ba5d75a4c9ea6b27d960c9eb4a018 # v2.2.8
