@@ -33,5 +33,5 @@ jobs:
       - name: Install Coqfmt
         run: |
           cd coqfmt
-          opam install . --deps-only
+          opam install . --deps-only --with-test
           opam install .
