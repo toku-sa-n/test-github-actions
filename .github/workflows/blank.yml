@@ -14,11 +14,6 @@ jobs:
     runs-on: "windows-latest"
 
     steps:
-      - run: git config --global core.autocrlf input
-
-      - name: Checkout code
-        uses: actions/checkout@v4.1.3
-
       # See https://github.com/ocaml-opam/opam-repository-mingw#updates for `opam-repositories`.
       - name: Install OCaml
         uses: ocaml/setup-ocaml@v2.2.8
@@ -29,11 +24,5 @@ jobs:
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
 
-      - name: Try Coqfmt
-        run: git clone https://github.com/toku-sa-n/coqfmt.git
-
-      - name: Install Coqfmt
-        run: |
-          cd coqfmt
-          opam install --deps-only --with-test .
-          opam install .
+      - name: Install Coq
+        run: opam install coq.8.19.0
