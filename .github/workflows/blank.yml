@@ -32,7 +32,7 @@ jobs:
           dune-cache: true
 
       - name: Install gmp
-        run: pacman -S mingw-w64-x86_64-gmp
+        run: pacman -S mingw-w64-x86_64-gmp --noconfirm
 
       - name: Clone
         run: git clone https://github.com/toku-sa-n/coqfmt.git
