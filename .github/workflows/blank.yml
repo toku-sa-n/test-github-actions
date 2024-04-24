@@ -24,6 +24,9 @@ jobs:
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
 
+      - name: Install gmp
+        run: pacman -S mingw-w64-x86_64-gmp
+
       - name: Clone
         run: git clone https://github.com/toku-sa-n/coqfmt.git
 
