@@ -20,6 +20,10 @@ jobs:
     steps:
       - name: Setup msys2
         uses: msys2/setup-msys2@v2
+        with:
+          install: |
+            git
+            mingw-w64-x86_64-gmp
 
       # See https://github.com/ocaml-opam/opam-repository-mingw#updates for `opam-repositories`.
       - name: Install OCaml
@@ -30,9 +34,6 @@ jobs:
             opam-repository-mingw: https://github.com/ocaml-opam/opam-repository-mingw.git#sunset
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
-
-      - name: Install gmp
-        run: pacman -S mingw-w64-x86_64-gmp --noconfirm
 
       - name: Clone
         run: git clone https://github.com/toku-sa-n/coqfmt.git
