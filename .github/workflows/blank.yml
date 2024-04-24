@@ -38,5 +38,8 @@ jobs:
       - name: Clone
         run: git clone https://github.com/toku-sa-n/coqfmt.git
 
+      - name: Check PATH
+        run: echo $PATH
+
       - name: Install dependencies
         run: cd coqfmt && opam install --deps-only --with-test .
