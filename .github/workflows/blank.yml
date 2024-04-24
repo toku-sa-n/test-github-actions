@@ -41,8 +41,9 @@ jobs:
       - name: Check PATH
         run: echo $PATH
 
-      - name: Check PATH on PowerShell
-        run: echo $env:PATH
+      - name: env
+        run: opam env
+        shell: pwsh
 
       - name: Find opam
         run: find / -name opam
