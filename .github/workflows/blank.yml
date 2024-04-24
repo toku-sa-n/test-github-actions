@@ -13,9 +13,9 @@ jobs:
   test:
     runs-on: "windows-latest"
 
-    # defaults:
-    #   run:
-    #     shell: msys2 {0}
+    defaults:
+      run:
+        shell: msys2 {0}
 
     steps:
       - name: Setup msys2
@@ -40,6 +40,9 @@ jobs:
 
       - name: Check PATH
         run: echo $PATH
+
+      - name: Find opam
+        run: find / -name opam
 
       - name: Install dependencies
         run: cd coqfmt && opam install --deps-only --with-test .
