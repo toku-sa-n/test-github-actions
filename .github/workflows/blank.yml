@@ -23,4 +23,4 @@ jobs:
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
 
-      - run: opam install -y gmp && opam install coq
+      - run: opam install -y gmp && opam install -y coq
