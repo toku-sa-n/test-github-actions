@@ -15,4 +15,4 @@ jobs:
 
     steps:
       - name: Install Coq
-        run: choco install coq
+        run: choco install -y coq
