@@ -23,7 +23,7 @@ jobs:
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: true
 
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: 'toku-sa-n/coqfmt'
       - run: opam install -y .
